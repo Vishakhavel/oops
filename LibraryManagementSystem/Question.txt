@@ -1,0 +1,14 @@
+1. Design a Library Management System
+
+Assumptions:
+The library has books, members, and librarians.
+Each book has a title, author, ISBN, and a list of copies.
+Members can borrow and return books.
+Librarians can add and remove books.
+
+Requirements:
+Book class with properties: title, author, ISBN, copies.
+Member class with properties: name, memberID, borrowedBooks.
+Librarian class with properties: name, employeeID.
+Methods in Member class: borrowBook(book: Book), returnBook(book: Book).
+Methods in Librarian class: addBook(book: Book), removeBook(book: Book).
