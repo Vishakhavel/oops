@@ -1,3 +1,9 @@
+## Thoughtful first round qn - design a parking lot using oops. The lot has 4 types of vehicles - motorcycyles, compact cars, regular cars and vans. motorcycles can park anywhere, compacts can park in any CAR spot, regulars can park in regular and van spots, vans can park only in 2 consecutive regular car spots, or 3 compact car spots.
+
+we should be able to park, unpark, get count of total vehicles, get count of each vehicle, get remaining spaces for each vehicle from this parking lot.
+
+first make a 5x20 parking lot, with 5 rows and 20 lots in each row. The first 3 rows are reserved for motorcycles, the next 3 for compact and the remaining are for regular car spots.
+
 ## 1. Design a Library Management System
 Assumptions:
 The library has books, members, and librarians.
