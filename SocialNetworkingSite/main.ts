@@ -1,8 +1,9 @@
 // high level
 import User from "./classFiles/User";
 import Comment from "./classFiles/Comment";
+import Post from "./classFiles/Post";
 
-function addComment(content: string, author: User, post): void {
+function addComment(content: string, author: User, post: Post): void {
   const comment1 = new Comment(
     "hey slash, welcome to insta dude!",
     steve,
@@ -29,6 +30,7 @@ const josh = new User("josh");
 
 vichu.createPost('rubik"s cube pics');
 slash.createPost("guitar video");
+vichu.removeFriend(steve);
 
 // steve comments on slash's first post
 
