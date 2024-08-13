@@ -20,9 +20,9 @@ export default class Order {
     return sum;
   }
   public printSummary(): void {
-    let printString = "Order summary - \n Product | Quantity";
+    let printString = "Order summary - \n Product | Quantity \n";
     this.cartItems.map((ci) => {
-      printString += `${ci.product.name} | ${ci.quantity}`;
+      printString += `${ci.product.name} | ${ci.quantity} \n`;
     });
     console.log(printString);
   }

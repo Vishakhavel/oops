@@ -18,21 +18,30 @@
 import User from "./classFiles/User";
 import Product from "./classFiles/Product";
 
-const user = new User("user1");
+const user1 = new User("user1");
+const user2 = new User("user2");
 
 // create 5 products -> ps5, xbox, nintendo, earphones, guitars
 
 const ps5 = new Product("ps5", 500, 5);
 const xbox = new Product("xbox", 500, 5);
-const nintendo = new Product("nintendo", 500, 5);
-const earphones = new Product("earphones", 500, 5);
-const guitars = new Product("guitars", 500, 5);
 
 // add more quantity than in stock to cart -> should throw error
 
+user1.addToCart(ps5, 4);
+user2.addToCart(ps5, 1); // error
+
 // add proper quantity -> should be added to cart.
 
+user1.removeItemsFromCart(ps5, 3);
+user2.addToCart(ps5, 3);
+
 // add another user -> try to add quantity in excess of stock -> error message cos no stock
+
+user1.addToCart(xbox, 5);
+// print the orders of user1
+user1.showOrders(); // no output
+user1.placeOrder(); // some output
 
 // remove all the stock for ps5, since they went out of stock after the user added to cart, before the user clicked on place order -> error message
 
