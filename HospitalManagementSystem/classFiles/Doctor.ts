@@ -1,5 +1,6 @@
 import { v4 as uuidv4 } from "uuid";
 import Patient from "./Patient";
+import Person from "./Person";
 import AppointmentWithPatient from "./AppointmentWithPatient";
 import AppointmentWithDoctor from "./AppointmentWithDoctor";
 // add more valid specs here.
