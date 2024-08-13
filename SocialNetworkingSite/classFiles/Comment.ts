@@ -1,7 +1,9 @@
+import { v4 as uuidv4 } from "uuid";
+
 import User from "./User";
 import Post from "./Post";
 export default class Comment {
-  commentID: number;
+  commentId: string;
   content: string;
   author: User;
   post: Post;
@@ -11,6 +13,10 @@ export default class Comment {
     this.author = author;
     this.post = post;
     // auto-generating the comment ID
-    this.commentID = Math.floor(Math.random() * 1000);
+    this.commentId = uuidv4();
+  }
+
+  editComment(content: string) {
+    this.content = content;
   }
 }
