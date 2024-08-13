@@ -10,6 +10,8 @@ const showtime2 = new ShowTime("2024-08-15", "20:00", 100);
 const user = new User("John", 25);
 
 // movie name, show time, number of seats.
+
+// assumption is that each movie plays in a different theatre, independent of each other.
 user.bookTicket(spiderManMovie, showtime1, 7);
 user.bookTicket(spiderManMovie, showtime1, 2);
 user.bookTicket(spiderManMovie, showtime2, 2);

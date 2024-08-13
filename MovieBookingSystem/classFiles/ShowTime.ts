@@ -1,14 +1,14 @@
 export default class ShowTime {
-  date: string;
-  time: string;
-  availableSeats: number;
+  public date: string;
+  public time: string;
+  public availableSeats: number;
   constructor(date: string, time: string, availableSeats: number) {
     this.date = date;
     this.time = time;
     this.availableSeats = availableSeats;
   }
 
-  updateAvailableSeats(numberOfSeats: number) {
+  public updateAvailableSeats(numberOfSeats: number): void {
     this.availableSeats += numberOfSeats;
   }
 }

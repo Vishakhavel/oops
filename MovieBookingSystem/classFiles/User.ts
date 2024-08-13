@@ -16,7 +16,11 @@ export default class User {
     this.userId = Math.floor(Math.random() * 1000000);
   }
 
-  bookTicket(movie: Movie, showTime: ShowTime, numberOfSeats: number) {
+  public bookTicket(
+    movie: Movie,
+    showTime: ShowTime,
+    numberOfSeats: number
+  ): void {
     // update the available seats
     if (showTime.availableSeats < numberOfSeats) {
       throw new Error("Not enough seats during this show time!");
@@ -30,7 +34,7 @@ export default class User {
       );
     }
   }
-  cancelTicket(showTime: ShowTime): void {
+  public cancelTicket(showTime: ShowTime): void {
     let index = this.bookings.findIndex(
       (curBooking) =>
         curBooking.showTime.time === showTime.time &&
