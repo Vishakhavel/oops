@@ -1,4 +1,7 @@
 import { v4 as uuidV4 } from "uuid";
+import { AppointmentStatus } from "../constants";
+
+import { findAppointmentIndex } from "../utils";
 import Doctor from "./Doctor";
 import Person from "./Person";
 import AppointmentWithDoctor from "./AppointmentWithDoctor";
@@ -18,19 +21,21 @@ export default class Patient implements Person {
 
   public bookAppointment(doctor: Doctor, date: string, time: string): void {
     // check if the doctor is available at the given date and time.
-    let isDoctorOccupied = doctor.appointments.some(
-      (a: AppointmentWithPatient) =>
-        a.date === date && a.time == time && a.status === "scheduled"
+    let isDoctorOccupied = findAppointmentIndex(
+      date,
+      time,
+      doctor.appointments
     );
 
-    let doesPatientHaveOtherAppointments = this.appointments.some(
-      (a: AppointmentWithDoctor) =>
-        a.date === date && a.time === time && a.status === "scheduled"
+    let doesPatientHaveOtherAppointments = findAppointmentIndex(
+      date,
+      time,
+      this.appointments
     );
 
-    if (isDoctorOccupied) {
+    if (isDoctorOccupied !== -1) {
       throw new Error(`Doctor is occupied at ${date} - ${time}. \n`);
-    } else if (doesPatientHaveOtherAppointments) {
+    } else if (doesPatientHaveOtherAppointments !== -1) {
       throw new Error(`You have another appointment at ${date} - ${time}. \n`);
     } else {
       // add appointment to patient's list of appointments
@@ -42,31 +47,28 @@ export default class Patient implements Person {
       );
     }
   }
-  cancelAppointment(appointment: AppointmentWithDoctor): void {
-    let index = this.appointments.findIndex(
-      (a: AppointmentWithDoctor) =>
-        appointment.time === a.time &&
-        appointment.date === a.date &&
-        appointment.status === "scheduled"
-    );
+  //   cancelAppointment(appointment: AppointmentWithDoctor): void {
+  // can't be date time in creation, and appointment class in deletion. better to make it date, time doctor for both creatuion and deletion
+  //   cancelAppointment(appointment: AppointmentWithDoctor): void {
+  cancelAppointment(doctor: Doctor, date: string, time: string): void {
+    let index = findAppointmentIndex(date, time, this.appointments);
 
     if (index === -1) {
       throw new Error(
-        `There is no appointment scheduled at ${appointment.date} - ${appointment.time}. `
+        `There is no appointment scheduled at ${date} - ${time}. `
       );
     } else {
       // delete the appointment for the patient
-      this.appointments[index].status = "canceled";
+      this.appointments[index].status = AppointmentStatus.Canceled;
 
       //   delete the appointment for the doctor at this time, day for this patient
-      const docAppointmentIndex = appointment.doctor.appointments.findIndex(
+      const docAppointmentIndex = doctor.appointments.findIndex(
         (a: AppointmentWithPatient) =>
-          a.date === appointment.date &&
-          a.time === appointment.time &&
-          a.status === "scheduled"
+          a.date === date && a.time === time && a.status === "scheduled"
       );
 
-      appointment.doctor.appointments[docAppointmentIndex].status = "canceled";
+      doctor.appointments[docAppointmentIndex].status =
+        AppointmentStatus.Canceled;
     }
   }
 }

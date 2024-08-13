@@ -9,6 +9,8 @@ const patient2 = new Patient("patient2");
 
 // create an appointment with ortho.
 patient1.bookAppointment(doc1, "08-12-2024", "10:00");
+patient1.printAppointments();
+doc1.printAppointments();
 // show throw error for another appointment, scheduled at the same date and time cos clash
 // patient1.bookAppointment(doc2, "08-12-2024", "10:00");
 

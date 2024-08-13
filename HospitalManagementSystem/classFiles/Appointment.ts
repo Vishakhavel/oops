@@ -1,4 +1,5 @@
-type AppointmentStatus = "scheduled" | "completed" | "canceled";
+// type AppointmentStatus = "scheduled" | "completed" | "canceled";
+import { AppointmentStatus } from "../constants";
 export default class Appointment {
   date: string;
   time: string;
@@ -7,6 +8,6 @@ export default class Appointment {
   constructor(time: string, date: string) {
     this.time = time;
     this.date = date;
-    this.status = "scheduled";
+    this.status = AppointmentStatus.Scheduled;
   }
 }
