@@ -31,6 +31,7 @@ export default class User {
     this.printAllFriends();
   }
 
+  //   comments still stay after someone unfriends someone else.
   public removeFriend(user: User): void {
     // check if the user is in the friends list first.
     let index = this.friends.findIndex(
@@ -49,7 +50,7 @@ export default class User {
     this.printAllFriends();
   }
 
-  public createPost(content: string) {
+  public createPost(content: string): void {
     const newPost = new Post(content, this);
     this.posts.push(newPost);
   }

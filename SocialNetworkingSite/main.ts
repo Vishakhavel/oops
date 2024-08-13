@@ -2,6 +2,16 @@
 import User from "./classFiles/User";
 import Comment from "./classFiles/Comment";
 
+function addComment(content: string, author: User, post): void {
+  const comment1 = new Comment(
+    "hey slash, welcome to insta dude!",
+    steve,
+    slash.posts[0]
+  );
+
+  slash.posts[0].addComment(comment1);
+}
+
 const vichu = new User("Vichu");
 const slash = new User("Slash");
 const steve = new User("steve");
@@ -21,10 +31,5 @@ vichu.createPost('rubik"s cube pics');
 slash.createPost("guitar video");
 
 // steve comments on slash's first post
-const comment1 = new Comment(
-  "hey slash, welcome to insta dude!",
-  steve,
-  slash.posts[0]
-);
 
-slash.posts[0].addComment(comment1);
+addComment("hey slash, welcome to insta dude!", steve, slash.posts[0]);
