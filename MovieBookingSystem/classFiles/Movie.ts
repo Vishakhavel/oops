@@ -8,17 +8,7 @@ export default class Movie {
   constructor(title: string, genre: string) {
     this.title = title;
     this.genre = genre;
-  }
-
-  private checkShowTimeValidity(curShowTime: ShowTime): void {
-    this.showTimes.forEach((showtime) => {
-      if (
-        showtime.date === curShowTime.date &&
-        showtime.time - curShowTime.time < this.duration
-      ) {
-        throw new Error("Showtime overlaps with previous showtime!");
-      }
-    });
+    this.showTimes = [];
   }
 
   addShowtime(showtime: ShowTime): void {

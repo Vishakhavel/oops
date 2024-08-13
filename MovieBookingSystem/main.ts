@@ -4,13 +4,14 @@ import ShowTime from "./classFiles/ShowTime";
 
 const spiderManMovie = new Movie("Spiderman", "Sci-Fi");
 
-spiderManMovie.addShowtime(new ShowTime("08-13-2024", "10:00", 10));
-spiderManMovie.addShowtime(new ShowTime("08-12-2024", "10:00", 10));
+const showtime1 = new ShowTime("2024-08-15", "18:00", 100);
+const showtime2 = new ShowTime("2024-08-15", "20:00", 100);
 
 const user = new User("John", 25);
 
 // movie name, show time, number of seats.
-user.bookTicket(spiderManMovie, showTimesForSpiderman[0], 2);
-user.bookTicket(batmanMovie, showTimesForSpiderman, 2);
+user.bookTicket(spiderManMovie, showtime1, 2);
+user.bookTicket(spiderManMovie, showtime1, 7);
+user.bookTicket(spiderManMovie, showtime2, 2);
 
-user.cancelBooking();
+user.cancelTicket(showtime1);
