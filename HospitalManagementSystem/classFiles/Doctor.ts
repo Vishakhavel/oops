@@ -76,8 +76,25 @@ export default class Doctor implements Person {
       patient.appointments[patientAppointmentIndex].status =
         AppointmentStatus.Canceled;
       console.log(
-        `Successfully scheduled at ${date} : ${time}, with patient - ${patient.name} deleted appointment.`
+        `Successfully deleted appointment at ${date} : ${time}, with patient - ${patient.name} deleted appointment.`
       );
     }
+  }
+  public printAppointments(): void {
+    let printString = "";
+    for (let i = 0; i < this.appointments.length; i++) {
+      printString +=
+        "Patient -" +
+        this.appointments[i].patient.name +
+        " Date -" +
+        this.appointments[i].date +
+        " Time -" +
+        this.appointments[i].time +
+        "\n" +
+        "Status - " +
+        this.appointments[i].status +
+        "\n";
+    }
+    console.log(`Doctor - ${this.name}'s appointments: \n ${printString} \n`);
   }
 }

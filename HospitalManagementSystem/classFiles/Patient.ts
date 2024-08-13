@@ -43,14 +43,14 @@ export default class Patient implements Person {
       // add appointment to doctor's list of appointments
       doctor.appointments.push(new AppointmentWithPatient(time, date, this));
       console.log(
-        ` Successfully scheduled appointment at ${date} - ${time} with Dr. ${doctor.name}. Please arrive 30 mins early.`
+        ` Successfully scheduled appointment at ${date} - ${time} with Dr. ${doctor.name}. Please arrive 30 mins early. \n`
       );
     }
   }
   //   cancelAppointment(appointment: AppointmentWithDoctor): void {
   // can't be date time in creation, and appointment class in deletion. better to make it date, time doctor for both creatuion and deletion
   //   cancelAppointment(appointment: AppointmentWithDoctor): void {
-  cancelAppointment(doctor: Doctor, date: string, time: string): void {
+  public cancelAppointment(doctor: Doctor, date: string, time: string): void {
     let index = findAppointmentIndex(date, time, this.appointments);
 
     if (index === -1) {
@@ -70,5 +70,23 @@ export default class Patient implements Person {
       doctor.appointments[docAppointmentIndex].status =
         AppointmentStatus.Canceled;
     }
+  }
+
+  public printAppointments(): void {
+    let printString = "";
+    for (let i = 0; i < this.appointments.length; i++) {
+      printString +=
+        "Doctor -" +
+        this.appointments[i].doctor.name +
+        " Date -" +
+        this.appointments[i].date +
+        " Time -" +
+        this.appointments[i].time +
+        "\n" +
+        "Status - " +
+        this.appointments[i].status +
+        "\n";
+    }
+    console.log(`Patient - ${this.name}'s appointments: \n ${printString} \n`);
   }
 }

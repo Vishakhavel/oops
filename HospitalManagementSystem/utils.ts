@@ -4,7 +4,7 @@ export const findAppointmentIndex = (
   date: string,
   time: string,
   appointments: Appointment[]
-) => {
+): number => {
   return appointments.findIndex(
     (a: Appointment) =>
       a.date === date &&
