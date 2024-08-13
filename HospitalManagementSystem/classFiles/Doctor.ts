@@ -31,13 +31,23 @@ export default class Doctor implements Person {
         a.date === date && a.time === time && a.status === "scheduled"
     );
 
+    let isDoctorOccupied: boolean = this.appointments.some(
+      (a) => a.time === time && a.date === date && a.status === "scheduled"
+    );
+
     if (occupied) {
       throw new Error(
         "Patient has another appointment at specified date and time"
       );
+    } else if (isDoctorOccupied) {
+      throw new Error(
+        `You already have an appointment scheduled at ${date} - ${time}`
+      );
     } else {
-      // add to the list of appointments. pass the doctor as this.
+      // add to doctor's list of appointments
       this.appointments.push(new AppointmentWithPatient(time, date, patient));
+      //   add to patient's list of appointments
+      patient.appointments.push(new AppointmentWithDoctor(time, date, this));
     }
   }
   cancelAppointment(appointment: AppointmentWithPatient): void {
@@ -51,7 +61,20 @@ export default class Doctor implements Person {
       throw new Error("Appointment does not exist");
     } else {
       // not deleting, but changing status to cancelled
+      //   cancel appointment for the doctor
       this.appointments[index].status = "canceled";
+      //   cancel the appointment for the patient
+      //   delete the appointment for the doctor at this time, day for this patient
+      const patientAppointmentIndex =
+        appointment.patient.appointments.findIndex(
+          (a: AppointmentWithDoctor) =>
+            a.date === appointment.date &&
+            a.time === appointment.time &&
+            a.status === "scheduled"
+        );
+
+      appointment.patient.appointments[patientAppointmentIndex].status =
+        "canceled";
       console.log(
         `Successfully scheduled at ${appointment.date} : ${appointment.time}, with patient - ${appointment.patient.name} deleted appointment.`
       );

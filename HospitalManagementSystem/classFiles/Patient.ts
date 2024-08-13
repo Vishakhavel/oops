@@ -55,6 +55,7 @@ export default class Patient implements Person {
         `There is no appointment scheduled at ${appointment.date} - ${appointment.time}. `
       );
     } else {
+      // delete the appointment for the patient
       this.appointments[index].status = "canceled";
 
       //   delete the appointment for the doctor at this time, day for this patient
